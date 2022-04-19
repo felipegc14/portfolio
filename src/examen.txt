@@ -1,0 +1,416 @@
+consigna: contrasenas mayores a 6 digitos y con numeros y letras
+email con @
+peticion con axios para subir el formulario
+
+
+
+import React from "react";
+import axios from "axios";
+
+
+const isValidPassword = (value) => {
+  /* Agregar lógica */
+};
+
+const isValidEmail = (value) => {
+  /* Agregar lógica */
+};
+
+
+
+const LoginForm = () => {
+  const [invalidForm, setInvalidForm] = React.useState(true);
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
+  const sendRequest = () => {
+    // Agregar lógica
+  };
+
+  return (
+    <form>
+      <input type="email" onChange={/* Agregar lógica */} value={email} />
+      <input type="password" onChange={/* Agregar lógica */} value={password} />
+      <button disabled={invalidForm} onClick={sendRequest}>
+        Enviar
+      </button>
+    </form>
+  );
+};
+export { LoginForm, isValidEmail, isValidPassword };
+
+
+ejercicios 3
+
+Situación inicial 👨‍💻
+
+Como parte del proyecto que comenzaste a realizar en la primera etapa, ahora seguiremos desarrollando el flow del usuario en tu app. En este sentido, hay un servicio que se encarga de realizar la petición HTTP realizada anteriormente y, en base a la respuesta, se ejecutarán los dos métodos que figuran en el código existente. ¡Veamos de qué se trata!
+
+
+Objetivos 📌
+
+Tu objetivo será elaborar el flujo de la petición y desarrollar lo respectivo al manejo de respuestas. Las mismas deberán ser diferentes dependiendo de si la petición es válida o no.
+
+
+Requerimientos
+
+Una vez realizada la petición HTTP correspondiente al formulario de login, se deberán manejar 2 posibilidades:
+
+En caso que la petición sea válida, la API te debe enviar el token y los datos del usuario en la base de datos y, a partir de eso, se debe almacenar el token (con clave "token") y la información del usuario (con clave "user") en localStorage para después poder utilizarlo en otras peticiones. Luego, se deberá redirigir al usuario a '/home', utilizando history.replace().
+
+En caso que la petición NO sea válida, se deberá lanzar una alerta al usuario utilizando la librería SweetAlert2 (https://sweetalert2.github.io/#usage). La misma ya se encuentra importada en la constante Swal , y debe advertir que el username o la password son incorrectas. Dicha alerta deberá tener un título y un texto elegidos por tí. 🎨
+
+const onSuccessfulRequest = (userData, token) => {
+    // Método a ejecutar si la petición se realiza correctamente
+
+}
+
+const onFailedRequest = () => {
+    // Método a ejecutar si la petición falla
+
+}
+
+ejercicio 4
+
+Objetivos 📌
+
+En base a la estructura existente del header (véase "Código introductorio"), tu objetivo será utilizar las clases para crear reglas de CSS que cumplan con los requerimientos mencionados debajo.
+
+
+Codigo introductorio
+
+    <header className="main-header">
+        <figure className="logo-container">
+            <img src="logo.png"></img >
+        </figure>
+    
+        <nav>
+            <ul className="main-navigation">
+                <li><a href="#">Inicio< a></li>
+                <li><a href="#">Sobre nosotros< a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+Requerimientos 👈
+
+.main-header
+
+
+Deberá mostrar los elementos internos distribuídos de forma horizontal, utilizando flexbox.
+El color de fondo deberá ser dodgerblue.
+El header debe mantenerse siempre fijo en la pantalla (aunque el usuario scrollee).
+
+
+.logo-container
+
+
+Su espacio interno deberá ser de 15px.
+La imagen interna deberá mostrarse envuelta en un círculo.
+
+
+.main-navigation
+
+
+Deberá mostrar la lista de elementos uno al lado de otro, distribuídos de forma horizontal, utilizando flexbox.
+Al pasar el mouse sobre alguno de los elementos de navegación, el texto deberá convertirse a negrita.
+La lista no deberá contener ninguna decoración.
+
+
+El resultado final deberá ser similar al siguiente:
+
+
+
+ ejercicio 5 
+
+ Situación inicial 👨‍💻
+
+En los últimos meses se han reportado diferentes quejas de usuarios que no comprenden la navegación del sitio web que había antes de tu llegada al proyecto. Como integrante del equipo de desarrollo, te solicitan rediseñar la estructura básica del sitio.
+
+
+Objetivos 📌
+
+Deberás crear una estructura de navegación que permita mostrar un listado de links en un header, un pie de página y renderizar el contenido según la ruta. Para ello, deberás utilizar la librería React Router en su Versión 6
+
+Especificaciones técnicas 👈
+
+Las rutas son:
+'/': Renderizará el componente Home
+'/about': Renderizará el componente About
+El contenido de cada página no es relevante en esta etapa, por lo que deberás trabajar en los siguientes componentes:
+Navigator: Lista no ordenada con los links de navegación a las diferentes páginas en cada item
+Content: Renderizará el contenido que corresponda a cada ruta
+BaseLayout: Contendrá los componentes Navigator, Content y Footer
+
+
+
+⚠️ IMPORTANTE: El contenedor principal (BrowserRouter) se encuentra importado a un nivel superior, por lo que NO se agregará en nuestro componente.⚠️
+Contenedor principal de la App:
+
+ const App = () => (<BrowserRouter> <BaseLayout> </BrowserRouter>);
+
+
+
+import React from "react";
+import { Route, Routes, Link } from "react-router-dom";
+
+const Home = () => <div>Esta es la página Inicio</div>
+const About = () => <div>Esta es la página Nosotros</div>
+const Footer = () => <div>Esta es la sección Pié de Página</div>
+
+const Navigator = () => {
+    // Deberá retornar múltiples elementos de lista <li> Que contengan los links para navegar.
+    return (<ul>
+
+
+    </ul>
+    );
+}
+
+const Content = () => {
+    // Deberá retornar un contenedor de rutas, con las rutas correspondientes a cada componente dentro.
+    return ()
+}
+
+const BaseLayout = () => {
+    // Deberá renderizar los componentes en conjunto.
+    return (
+        <div>
+
+
+        </div>
+    );
+}
+
+export { BaseLayout, Navigator }
+
+
+ejercicio 6
+
+
+
+Situación inicial 👨‍💻
+
+¡Hay novedades del cliente! En los últimos días han estado pensando en la idea de crear una sección de noticias en el sitio. Ellos ya tienen estas noticias redactadas y diseñadas, pero necesitan crear una sección específica en el sitio para poder cargarlas.
+
+
+Objetivos 📌
+
+Tu objetivo será renderizar un array de noticias recibidas en la property newsList.
+
+
+Requerimientos 👈
+
+Cada noticia deberá mostrarse dentro de una etiqueta "article", que contenga:
+
+
+Imagen (con ancho máximo de 100px)
+
+Título (en etiqueta h3)
+
+Descripción (en etiqueta p)
+
+
+
+Para la iteración, el campo único que permite diferenciar las noticias es "id".
+
+
+
+import React from 'react'
+
+export default function News({newsList}) {
+    return (
+        <div>
+            
+        </div>
+    )
+}
+
+
+
+ejercicio 7
+
+
+
+Situación inicial 👨‍💻
+
+El líder técnico de tu equipo detectó un error en el newsletter del cliente: al hacer click en el botón del component newsList, la API no devuelve el listado de noticias que necesitan. Si bien el componente ya está armado, te solicitan integrarlo con el backend.
+
+
+Objetivos 📌
+
+Tu objetivo será integrar los componentes realizados con la información disponible en la API. Ten en cuenta que para esta ejercitación utilizaremos una API ficticia.
+
+
+Requerimientos 👈
+
+Al hacer click en el botón del component NewsList, se deberá obtener un listado de noticias utilizando una petición GET hacia la url "http://api.com/posts" (la misma es ficticia).
+Trabajaremos con el hook useState de React, para consultar y modificar el listado.
+En el caso de que la petición se ejecute correctamente, los resultados deberán almacenarse en el estado para ser iterados posteriormente (no es necesario modificar el componente detalle).
+Si ocurre un error, se deberá utilizar el método fire de SweetAlert2 (https://sweetalert2.github.io/#usage). para mostrar una alerta con un título y texto inventado por ti. La librería SweetAlert ya se encuentra importada en una constante llamada Swal
+
+
+
+import React from 'react';
+import axios from 'axios';
+
+
+const NewsItem = ({ newsItem }) => (<li> {newsItem} </li>)
+
+const NewsList = () => {
+
+
+    const loadNews = () => {
+
+    }
+
+
+    return (
+        <div>
+            <h1> News list!! </h1>
+            <button > Load news</button>
+
+            <ul>
+                {
+                    newsList.map((news, i) => <NewsItem key={i} news={news}></NewsItem>)
+                }
+            </ul>
+        </div>
+    );
+
+}
+export { NewsList, Swal };
+
+
+ejercicio 8
+
+
+
+Situación inicial 👨‍💻
+
+¡Tu equipo necesita de tu ayuda! En el marco del diario virtual para el que ustedes trabajan, se han reportado muchos casos de uso en los que l@s lector@s no han podido acceder al detalle de las noticias. Detectaron en el código existente que falta armar el componente que renderiza las noticias.
+
+
+Objetivos 📌
+
+Tu objetivo será armar el componente que deberá renderizar el detalle de una noticia. Ese detalle será recibido vía props y sabemos que la estructura de una noticia es la siguiente:
+
+    
+    
+        {
+            "id": 1,
+            "title": "Título de la noticia",
+            "image": "http://imagen.png",
+            "views": 9876,
+            "categories": [
+                {
+                    "name": "Policiales",
+                    "id": 1
+                },
+                {
+                    "name": "Internacionales",
+                    "id": 2
+                },
+                {
+                    "name": "Política",
+                    "id": 3
+                },
+        
+            ],
+            "content": "Contenido de la noticia"
+        }
+    
+    
+    
+    
+
+
+Requerimientos 👈
+
+En base a la estructura recibida, se deberán renderizar los datos en una etiqueta article teniendo en cuenta los siguientes elementos:
+
+
+
+Una etiqueta img con la imagen de la noticia
+
+Etiqueta h3 con título
+
+Un span con la clase "visits", que contenga el texto "Visitas ", seguido del número de visitas
+
+Un div con la clase "categories", que contenga los nombres de cada categoría, separados por comas, por ejemplo: Regionales, Política (IMPORTANTE: La última categoría no debe tener una coma al final)
+
+Una etiqueta p con el contenido
+
+
+
+
+import React from 'react';
+
+export default function Detail({article}) {
+    return (
+        <article>
+
+           
+        </article>
+    )
+}
+
+
+
+
+ejercicio 9
+
+
+
+
+Situación inicial 👨‍💻
+
+Has recibido un nuevo mensaje de Romina, la PM del equipo: “En los últimos días el cliente notó la necesidad de que solo puedan acceder al home los usuarios que se hayan autenticado previamente. Han tomado esta decisión para tener una mejor trazabilidad de los consumidores de su tienda para, luego, ofrecerles promociones vía email o recordatorios de compra de los últimos productos vistos. Para eso, debemos mejorar el sistema de protección de rutas. ¿Puedes encargarte de eso?”
+
+
+Objetivos 📌
+
+Deberás proteger la aplicación de los usuarios no autenticados, es decir, que solo se les permitirá el ingreso al Home a aquellos que se hayan autenticado previamente.
+
+
+Requerimientos
+
+Actualmente, disponemos de nuestras ruta base definida ('/').
+
+
+Deberás agregar contenido al componente Login (a modo de mock, ya que el funcionamiento de dicho componente no es parte del scope de esta tarea)
+Agregar la ruta "/login" al listado de rutas existente para redirigir al usuario no autenticado al componente
+Agregar la lógica necesaria al componente Home para que, al ingresar, verifique si existe la clave "user" en localStorage. En el caso de que no, redirigirlo a la ruta "/login" creada anteriormente.
+
+
+
+
+import React from 'react';
+import { Route, Routes, Link, useNavigate } from "react-router-dom";
+
+const Login = () => {
+ // Componente de Login
+
+ return (
+ );
+}
+
+const Home = () => {
+// Lógica para verificar usuario y redireccionar si no está autenticado
+
+return (
+<div>
+    <h1> Bienvenido a la sección de miembros </h1>
+</div>
+)
+}
+
+export default function Layout() {
+return (<Routes id="routes">
+    <Route path="/" element={ <Home /> } />
+    {/* ruta faltante */}
+</Routes>)
+}
+
+
